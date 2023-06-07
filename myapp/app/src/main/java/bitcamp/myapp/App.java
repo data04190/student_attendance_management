@@ -23,7 +23,7 @@ public class App {
 
 
   static void printTitle() {
-    System.out.println("나의 출결 관리 시스템");
+    System.out.println("학생 출결 관리 시스템");
     System.out.println("=================================");
   }
 
