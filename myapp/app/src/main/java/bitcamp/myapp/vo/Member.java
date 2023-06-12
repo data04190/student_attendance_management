@@ -5,6 +5,9 @@ import java.time.LocalTime;
 
 public class Member {
 
+  private static int userId = 1;
+  final LocalTime lateTime = LocalTime.parse("09:30");
+
   private int no;
   private LocalDate date;
   private String studentName;
@@ -13,9 +16,9 @@ public class Member {
   private LocalTime studyTime;
   private String lateStatus;
 
-  final LocalTime lateTime = LocalTime.parse("09:30");
 
   public Member() {
+    this.no = userId++;
     this.date = LocalDate.now();
   }
 
@@ -70,6 +73,7 @@ public class Member {
   public void setLateStatus() {
     this.lateStatus = this.getEntryTime().isAfter(lateTime) ? "O" : "X";
   }
+
 
 
 }

@@ -11,9 +11,7 @@ public class MemberHandler {
   static int[] no = new int[MAX_SIZE];
   static Member[] members = new Member[MAX_SIZE];
 
-  static int userId = 1;
   static int length = 0;
-
 
   public static void inputMember() {
     if (!available()) {
@@ -27,7 +25,7 @@ public class MemberHandler {
     m.setExitTime(LocalTime.parse(Prompt.inputString("퇴실 시간(HH:MM) ")));
     m.setStudyTime(LocalTime.parse(Prompt.inputString("스터디 시간(HH:MM) ")));
     m.setLateStatus();
-    m.setNo(userId++);
+    
 
     members[length++] = m;
   }
@@ -38,7 +36,7 @@ public class MemberHandler {
     System.out.println("=====================================================================");
     for (int i = 0; i < length; i++) {
       Member m = members[i];
-      System.out.printf("%-3d %-10s %-8s %-10s %-10s %-10s %-6s\n", 
+      System.out.printf("%-3d %-10s %-7s %-10s %-11s %-13s %-10s\n", 
                       m.getNo(), m.getDate(), m.getStudentName(), m.getEntryTime(), 
                       m.getExitTime(), m.getStudyTime(), m.getLateStatus());
     }
