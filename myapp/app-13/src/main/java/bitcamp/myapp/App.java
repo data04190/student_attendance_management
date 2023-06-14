@@ -8,48 +8,42 @@ public class App {
 
   public static void main(String[] args) {
 
-    Prompt prompt = new Prompt();
-
-    MemberHandler memberhandler = new MemberHandler(prompt);
-    BoardHandler boardhandler = new BoardHandler(prompt);
-
-
     printTitle();
 
     printMenu();
 
     while (true) {
-      String menuNo = prompt.inputString("main> ");
+      String menuNo = Prompt.inputString("main> ");
       if (menuNo.equals("99")) {
         break;
       } else if (menuNo.equals("menu")) {
         printMenu();
       } else if (menuNo.equals("1")) {
-        memberhandler.inputMember();
+        MemberHandler.inputMember();
       } else if (menuNo.equals("2")) {
-        memberhandler.printMembers();
+        MemberHandler.printMembers();
       } else if (menuNo.equals("3")) {
-        memberhandler.viewMember();
+        MemberHandler.viewMember();
       } else if (menuNo.equals("4")) {
-        memberhandler.updateMember();
+        MemberHandler.updateMember();
       } else if (menuNo.equals("5")) {
-        memberhandler.deleteMember();
+        MemberHandler.deleteMember();
       } else if (menuNo.equals("6")) {
-        boardhandler.inputBoard();
+        BoardHandler.inputBoard();
       } else if (menuNo.equals("7")) {
-        boardhandler.printBoards();
+        BoardHandler.printBoards();
       } else if (menuNo.equals("8")) {
-        boardhandler.viewBoard();
+        BoardHandler.viewBoard();
       } else if (menuNo.equals("9")) {
-        boardhandler.updateBoard();
+        BoardHandler.updateBoard();
       } else if (menuNo.equals("10")) {
-        boardhandler.deleteBoard();
+        BoardHandler.deleteBoard();
       } else {
-        System.out.println("메뉴 번호가 옳지 않습니다.");
+        System.out.println(menuNo);
       }
     }
 
-    prompt.close();
+    Prompt.close();
   }
 
   static void printMenu() {
