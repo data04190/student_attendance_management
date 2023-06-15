@@ -9,16 +9,51 @@ public class MemberHandler {
   static final int MAX_SIZE = 100;
 
   private Prompt prompt;
-
   private Member[] members = new Member[MAX_SIZE];
-
   private int length = 0;
+  private String title;
 
-  public MemberHandler(Prompt prompt) {
+  public MemberHandler(Prompt prompt, String title) {
     this.prompt = prompt;
+    this.title = title;
   }
 
-  public void inputMember() {
+  public void execute() {
+    printMenu();
+
+    while (true) {
+      String menuNo = prompt.inputString("%s> ", this.title);
+      if (menuNo.equals("0")) {
+        break;
+      } else if (menuNo.equals("menu")) {
+        printMenu();
+      } else if (menuNo.equals("1")) {
+        this.inputMember();
+      } else if (menuNo.equals("2")) {
+        this.printMembers();
+      } else if (menuNo.equals("3")) {
+        this.viewMember();
+      } else if (menuNo.equals("4")) {
+        this.updateMember();
+      } else if (menuNo.equals("5")) {
+        this.deleteMember();
+      } else {
+        System.out.println("메뉴 번호가 옳지 않습니다!");
+      }
+
+    }
+  }
+
+  private static void printMenu() {
+    System.out.println("1. 등록");
+    System.out.println("2. 목록");
+    System.out.println("3. 조회");
+    System.out.println("4. 변경");
+    System.out.println("5. 삭제");
+    System.out.println("0. 메인");
+  }
+
+  private void inputMember() {
     if (!this.available()) {
       System.out.println("더이상 입력할 수 없습니다!");
       return;
@@ -35,7 +70,7 @@ public class MemberHandler {
     members[this.length++] = m;
   }
 
-  public void printMembers() {
+  private void printMembers() {
     System.out.println("=====================================================================");
     System.out.println("\t날짜\t이름\t입실 시간  퇴실 시간  스터디 시간  지각 여부");
     System.out.println("=====================================================================");
@@ -47,7 +82,7 @@ public class MemberHandler {
     }
   }
 
-  public void viewMember() {
+  private void viewMember() {
     String memberNo = this.prompt.inputString("번호? ");
     for (int i = 0; i < this.length; i++) {
       Member m = this.members[i];
@@ -63,7 +98,7 @@ public class MemberHandler {
     System.out.println("해당 번호의 회원이 없습니다!");
   }
 
-  public void updateMember() {
+  private void updateMember() {
     String memberNo = this.prompt.inputString("번호? ");
     for (int i = 0; i < this.length; i++) {
       Member m = this.members[i];
@@ -85,7 +120,7 @@ public class MemberHandler {
   }
 
 
-  public void deleteMember() {
+  private void deleteMember() {
 
     int memberNo = this.prompt.inputInt("번호? ");
 
