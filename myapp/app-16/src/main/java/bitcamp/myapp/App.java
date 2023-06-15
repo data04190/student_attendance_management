@@ -1,7 +1,6 @@
 package bitcamp.myapp;
 
 import bitcamp.myapp.handler.BoardHandler;
-import bitcamp.myapp.handler.Handler;
 import bitcamp.myapp.handler.MemberHandler;
 import bitcamp.util.Prompt;
 
@@ -11,8 +10,8 @@ public class App {
 
     Prompt prompt = new Prompt();
 
-    Handler memberhandler = new MemberHandler(prompt, "회원");
-    Handler boardhandler = new BoardHandler(prompt, "게시글");
+    MemberHandler memberhandler = new MemberHandler(prompt, "회원");
+    BoardHandler boardhandler = new BoardHandler(prompt, "게시글");
 
 
     printTitle();
