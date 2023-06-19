@@ -1,13 +1,15 @@
 package bitcamp.myapp.handler;
 
+
 import java.time.LocalTime;
 import bitcamp.myapp.vo.Member;
+import bitcamp.util.LinkedList;
 import bitcamp.util.Prompt;
 
 
 public class MemberHandler implements Handler {
 
-  private ArrayList list = new ArrayList();
+  private LinkedList list = new LinkedList();
   private Prompt prompt;
   private String title;
 
@@ -69,7 +71,7 @@ public class MemberHandler implements Handler {
     System.out.println("\t날짜\t이름\t입실 시간  퇴실 시간  스터디 시간  지각 여부");
     System.out.println("=====================================================================");
 
-    Object[] arr = this.list.list();
+    Object[] arr = this.list.getList();
     for (Object obj : arr) {
       Member m = (Member) obj;
       System.out.printf("%-3d %-10s %-7s %-10s %-11s %-13s %-10s\n", m.getNo(), m.getDate(),
@@ -81,7 +83,7 @@ public class MemberHandler implements Handler {
   private void viewMember() {
     int memberNo = this.prompt.inputInt("번호? ");
 
-    Member m = (Member) this.list.get(new Member(memberNo));
+    Member m = (Member) this.list.retrieve(new Member(memberNo));
     if (m == null) {
       System.out.println("해당 번호의 회원이 없습니다.");
       return;
@@ -98,7 +100,7 @@ public class MemberHandler implements Handler {
 
     int memberNo = this.prompt.inputInt("번호? ");
 
-    Member m = (Member) this.list.get(new Member(memberNo));
+    Member m = (Member) this.list.retrieve(new Member(memberNo));
     if (m == null) {
       System.out.println("해당 번호의 회원이 없습니다.");
       return;
@@ -114,7 +116,7 @@ public class MemberHandler implements Handler {
 
   private void deleteMember() {
 
-    if (!this.list.delete(new Member(this.prompt.inputInt("번호? ")))) {
+    if (!this.list.remove(new Member(this.prompt.inputInt("번호? ")))) {
       System.out.println("해당 번호의 회원이 없습니다.");
 
     }

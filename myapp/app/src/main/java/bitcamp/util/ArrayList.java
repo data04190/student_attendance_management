@@ -1,4 +1,4 @@
-package bitcamp.myapp.handler;
+package bitcamp.util;
 
 public class ArrayList {
 
