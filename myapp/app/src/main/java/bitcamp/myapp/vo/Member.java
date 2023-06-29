@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 public class Member {
 
-  private static int userId = 1;
+  public static int userId = 1;
   final LocalTime lateTime = LocalTime.parse("09:30");
 
   private int no;
@@ -16,8 +16,6 @@ public class Member {
   private LocalTime studyTime;
   private String lateStatus;
 
-
-
   public Member() {
     this.no = userId++;
     this.date = LocalDate.now();
@@ -26,7 +24,6 @@ public class Member {
   public Member(int no) {
     this.no = no;
   }
-
 
   public boolean equals(Object obj) {
     if (obj == null) {
@@ -50,12 +47,16 @@ public class Member {
     return this.no;
   }
 
-  public int setNo(int no) {
-    return this.no = no;
+  public void setNo(int no) {
+    this.no = no;
   }
 
   public LocalDate getDate() {
     return this.date;
+  }
+
+  public void setDate(LocalDate date) {
+    this.date = date;
   }
 
   public String getStudentName() {
@@ -70,8 +71,8 @@ public class Member {
     return this.entryTime;
   }
 
-  public LocalTime setEntryTime(LocalTime entryTime) {
-    return this.entryTime = entryTime;
+  public void setEntryTime(LocalTime entryTime) {
+    this.entryTime = entryTime;
   }
 
   public LocalTime getExitTime() {
@@ -94,8 +95,12 @@ public class Member {
     return this.lateStatus;
   }
 
+  public void setLateStatus(String lateStatus) {
+    this.lateStatus = lateStatus;
+  }
+
   public void setLateStatus() {
-    this.lateStatus = this.getEntryTime().isAfter(lateTime) ? "O" : "X";
+    this.lateStatus = this.entryTime.isAfter(lateTime) ? "O" : "X";
   }
 
 
