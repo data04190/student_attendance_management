@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Member implements Serializable, CsvObject {
+public class Member implements Serializable, CsvObject, AutoIncrement {
 
   private static final long serialVersionUID = 1L;
 
@@ -19,10 +19,7 @@ public class Member implements Serializable, CsvObject {
   private LocalTime studyTime;
   private String lateStatus;
 
-  public Member() {
-    this.no = userId++;
-    this.date = LocalDate.now();
-  }
+  public Member() {}
 
   public Member(int no) {
     this.no = no;
@@ -51,6 +48,13 @@ public class Member implements Serializable, CsvObject {
     return String.format("%d,%s,%s,%s,%s,%s,%s", this.getNo(), this.getDate(),
         this.getStudentName(), this.getEntryTime(), this.getExitTime(), this.getStudyTime(),
         this.getLateStatus());
+  }
+
+  @Override
+  public void updateKey() {
+    if (Member.userId <= this.no) {
+      Member.userId = this.no + 1;
+    }
   }
 
   public boolean equals(Object obj) {

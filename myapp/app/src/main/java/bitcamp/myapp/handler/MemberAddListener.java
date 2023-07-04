@@ -16,6 +16,8 @@ public class MemberAddListener extends AbstractMemberListener {
   @Override
   public void service(BreadcrumbPrompt prompt) {
     Member m = new Member();
+
+    m.setNo(Member.userId++);
     m.setStudentName(prompt.inputString("이름? "));
     m.setDate(LocalDate.now());
     m.setEntryTime(LocalTime.parse(prompt.inputString("입실 시간(HH:MM) ")));
