@@ -31,6 +31,16 @@
   },
   {
     "lateTime": "09:30:00",
+    "no": 4,
+    "date": "2023-07-04",
+    "studentName": "박XX",
+    "entryTime": "09:44:00",
+    "exitTime": "18:00:00",
+    "studyTime": "19:00:00",
+    "lateStatus": "O"
+  },
+  {
+    "lateTime": "09:30:00",
     "no": 6,
     "date": "2023-07-06",
     "studentName": "김XX",
@@ -38,25 +48,5 @@
     "exitTime": "18:00:00",
     "studyTime": "21:45:00",
     "lateStatus": "O"
-  },
-  {
-    "lateTime": "09:30:00",
-    "no": 7,
-    "date": "2023-07-09",
-    "studentName": "이XX",
-    "entryTime": "09:55:00",
-    "exitTime": "18:02:00",
-    "studyTime": "18:55:00",
-    "lateStatus": "O"
-  },
-  {
-    "lateTime": "09:30:00",
-    "no": 8,
-    "date": "2023-07-10",
-    "studentName": "박XX",
-    "entryTime": "09:12:00",
-    "exitTime": "18:30:00",
-    "studyTime": "19:27:00",
-    "lateStatus": "X"
   }
 ]
