@@ -5,8 +5,6 @@ import java.io.Serializable;
 public class Board implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static int boardNo = 1;
-
   private int no;
   private String title;
   private String content;
@@ -15,10 +13,7 @@ public class Board implements Serializable {
   private int viewCount;
   private long createdDate;
 
-  public Board() {
-    this.no = boardNo++;
-    this.createdDate = System.currentTimeMillis();
-  }
+  public Board() {}
 
   public Board(int no) {
     this.no = no;

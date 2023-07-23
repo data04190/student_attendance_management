@@ -11,7 +11,6 @@ public class Member implements Serializable {
   public static final char MALE = 'M';
   public static final char FEMALE = 'W';
 
-  public static int userId = 1;
   final LocalTime lateTime = LocalTime.parse("09:30");
 
   private int no;
