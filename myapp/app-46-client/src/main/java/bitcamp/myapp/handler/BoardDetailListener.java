@@ -6,11 +6,11 @@ import bitcamp.util.ActionListener;
 import bitcamp.util.BreadcrumbPrompt;
 
 
-public class BoardUpdateListener implements ActionListener {
+public class BoardDetailListener implements ActionListener {
 
   BoardDao boardDao;
 
-  public BoardUpdateListener(BoardDao boardDao) {
+  public BoardDetailListener(BoardDao boardDao) {
     this.boardDao = boardDao;
   }
 
@@ -24,14 +24,12 @@ public class BoardUpdateListener implements ActionListener {
       return;
     }
 
-    board.setTitle(prompt.inputString("제목(%s)? ", board.getTitle()));
-    board.setContent(prompt.inputString("내용(%s)? ", board.getContent()));
-    board.setPassword(prompt.inputString("암호? "));
-
-    if (boardDao.update(board) == 0) {
-      System.out.println("암호가 일치하지 않습니다!");
-    } else {
-      System.out.println("변경했습니다!");
-    }
+    System.out.printf("제목: %s\n", board.getTitle());
+    System.out.printf("내용: %s\n", board.getContent());
+    System.out.printf("작성자: %s\n", board.getWriter());
+    System.out.printf("조회수: %s\n", board.getViewCount());
+    System.out.printf("등록일: %tY-%1$tm-%1$td\n", board.getCreatedDate());
+    board.setViewCount(board.getViewCount() + 1);
+    boardDao.update(board);
   }
 }
