@@ -2,23 +2,23 @@ package bitcamp.myapp.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import bitcamp.myapp.vo.Member;
+import bitcamp.myapp.vo.Attendance;
 import bitcamp.util.JsonDataHelper;
 
-public class MemberListDao implements MemberDao {
+public class MemberListDao implements AttendanceDao {
 
   String filename;
-  ArrayList<Member> list = new ArrayList<>();
+  ArrayList<Attendance> list = new ArrayList<>();
 
   public MemberListDao(String filename) {
     this.filename = filename;
-    JsonDataHelper.loadJson(filename, list, Member.class);
+    JsonDataHelper.loadJson(filename, list, Attendance.class);
   }
 
   @Override
-  public void insert(Member member) {
+  public void insert(Attendance member) {
     // 데이터 입력할 때 해당 데이터의 식별 번호는 DAO에서 관리한다.
-    member.setNo(Member.userId++);
+    member.setNo(Attendance.userId++);
     this.list.add(member);
 
     // 데이터를 등록할 때 마다 즉시 파일에 저장한다.
@@ -26,14 +26,14 @@ public class MemberListDao implements MemberDao {
   }
 
   @Override
-  public List<Member> list() {
+  public List<Attendance> list() {
     return this.list;
   }
 
   @Override
-  public Member findBy(int no) {
+  public Attendance findBy(int no) {
     for (int i = 0; i < this.list.size(); i++) {
-      Member m = this.list.get(i);
+      Attendance m = this.list.get(i);
       if (m.getNo() == no) {
         return m;
       }
@@ -42,7 +42,7 @@ public class MemberListDao implements MemberDao {
   }
 
   @Override
-  public int update(Member member) {
+  public int update(Attendance member) {
     for (int i = 0; i < list.size(); i++) {
       if (list.get(i).getNo() == member.getNo()) {
         list.set(i, member);
