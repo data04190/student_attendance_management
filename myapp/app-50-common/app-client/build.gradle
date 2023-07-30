@@ -19,14 +19,11 @@ repositories {
 
 dependencies {
 
-    //서브 프로젝트의 클래스 사용하기 
-    implementation project(':app-common')
-    
-    // MySQL JDBC 드라이버
-    implementation 'mysql:mysql-connector-java:8.0.33'
-    
     //LocalTime과 LocalDate를 Json으로 직렬화
     implementation 'com.fatboyindustrial.gson-javatime-serialisers:gson-javatime-serialisers:1.1.1'
+
+    //서브 프로젝트의 클래스 사용하기 
+    implementation project(':app-common')
     
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
@@ -66,7 +63,7 @@ tasks.withType(JavaCompile) {
 // eclipse 프로젝트 이름을 설정하기
 eclipse {
     project {
-        name = "server-student_management"
+        name = "client-student_management"
     }
     jdt {
       sourceCompatibility = 17
