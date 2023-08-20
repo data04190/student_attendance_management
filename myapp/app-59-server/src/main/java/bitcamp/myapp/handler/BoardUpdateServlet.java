@@ -3,7 +3,6 @@ package bitcamp.myapp.handler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -12,9 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import bitcamp.myapp.vo.AttachedFile;
 import bitcamp.myapp.vo.Board;
 import bitcamp.myapp.vo.Member;
@@ -60,9 +56,6 @@ public class BoardUpdateServlet extends HttpServlet {
 
         String uploadDir = request.getServletContext().getRealPath("/upload/board/");
         ArrayList<AttachedFile> attachedFiles = new ArrayList<>();
-
-        List<FileItem> parts =
-            new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
         for (Part part : request.getParts()) {
           if (part.getName().equals("files") && part.getSize() > 0) {
