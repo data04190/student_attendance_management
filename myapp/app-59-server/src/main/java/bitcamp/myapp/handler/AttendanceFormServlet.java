@@ -7,10 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bitcamp.myapp.vo.Member;
 
-@WebServlet("/index.html")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/attendance/form")
+public class AttendanceFormServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
@@ -27,22 +26,16 @@ public class HomeServlet extends HttpServlet {
     out.println("<title>NAVER CLOUD 학생 관리 시스템</title>");
     out.println("</head>");
     out.println("<body>");
-    out.println("<h1>NAVER CLOUD 학생 관리 시스템</h1>");
-    out.println("<ul>");
-
-    out.println("  <li><a href='/member/list'>학생 관리</a></li>");
-    out.println("  <li><a href='/attendance/list'>출결 체크</a></li>");
-    out.println("  <li><a href='/board/list'>공지 사항</a></li>");
-
-    Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-    if (loginUser == null) {
-      out.println("  <li><a href='/auth/form.html'>로그인</a></li>");
-    } else {
-      out.printf("  <li>%s <a href='/auth/logout'>로그아웃</a></li>", loginUser.getName());
-    }
-
-    out.println("</ul>");
+    out.println("<h1>출결 체크</h1>");
+    out.println("<form action='/attendance/add' method='post'>");
+    // out.println("학생 번호: <input type='number' name='studentNo.no'><br>"); // 학생 번호 입력
+    out.println("입실 시간: <input type='time' name='entryTime'><br>"); // 입실 시간 입력
+    out.println("퇴실 시간: <input type='time' name='exitTime'><br>"); // 퇴실 시간 입력
+    out.println("스터디 시간: <input type='time' name='studyTime'><br>");
+    out.println("<button>등록</button>");
+    out.println("</form>");
     out.println("</body>");
     out.println("</html>");
   }
+
 }
