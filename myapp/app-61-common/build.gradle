@@ -1,0 +1,54 @@
+plugins {
+    //id 'application'
+    id 'java-library'
+    id 'eclipse-wtp'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    //LocalTime과 LocalDate를 Json으로 직렬화
+    implementation 'com.fatboyindustrial.gson-javatime-serialisers:gson-javatime-serialisers:1.1.1'
+    
+    // Use JUnit Jupiter for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
+
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:31.1-jre'
+    
+    // Google JSON 라이브러리
+    implementation 'com.google.code.gson:gson:2.10.1'
+    
+    // jackson-databind JSON 라이브러리
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+// eclipse 프로젝트 이름을 설정하기
+eclipse {
+    project {
+        name = "common-student_management"
+    }
+    jdt {
+      sourceCompatibility = 17
+      targetCompatibility = 17
+      javaRuntimeName = "JavaSE-17"
+    }
+}
