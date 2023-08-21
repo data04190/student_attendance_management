@@ -12,6 +12,8 @@ public class Member implements Serializable {
   private String email;
   private String password;
   private int level;
+  private String photo;
+
 
   @Override
   public int hashCode() {
@@ -70,6 +72,12 @@ public class Member implements Serializable {
     this.level = level;
   }
 
+  public String getPhoto() {
+    return photo;
+  }
 
+  public void setPhoto(String photo) {
+    this.photo = photo;
+  }
 
 }
