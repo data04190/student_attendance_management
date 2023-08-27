@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.myapp.dao.AttendanceDao">
+
+  <!-- 결과 레코드의 컬럼 값을 자바 객체에 어떻게 담을 것인지 설정한다. -->
+  <resultMap type="attendance" id="attendanceMap">
+    <id     column="attendance_no" property="no"/>
+    <result column="date"          property="date"/>
+    <result column="entry_time"   property="entryTime"/>
+    <result column="exit_time"    property="exitTime"/>
+    <result column="study_time"   property="studyTime"/>
+    <result column="late_status"  property="lateStatus"/>
+ 
+    <association property="studentNo" javaType="member">
+      <id     column="member_no"    property="no"/>
+      <result column="name"         property="name"/>
+    </association>   
+    
+  </resultMap>
+
+  <insert id="insert" parameterType="attendance">
+    insert into student_attendance(date, student_no, entry_time, exit_time, study_time, late_status) 
+    values(#{date}, #{studentNo.no}, #{entryTime}, #{exitTime}, #{studyTime}, #{lateStatus})
+  </insert>
+  
+  <select id="findAll" resultMap="attendanceMap">
+    select 
+	     a.attendance_no,
+	     a.date,
+	     m.member_no,
+	     m.name,
+	     a.entry_time,
+	     a.exit_time,
+	     a.study_time,
+	     a.late_status
+     from student_attendance a inner join student_member m on a.student_no = m.member_no
+     order by 
+       attendance_no asc
+  </select>
+  
+  <select id="findBy" parameterType="int" resultMap="attendanceMap">
+    select 
+	     a.attendance_no,
+	     a.date,
+	     m.member_no,
+	     m.name, 
+	     a.entry_time, 
+	     a.exit_time, 
+	     a.study_time, 
+	     a.late_status
+     from student_attendance a inner join student_member m on a.student_no = m.member_no
+     where 
+       attendance_no=#{no}
+  </select>
+  
+  <update id="update" parameterType="attendance">
+    update myapp_student_attendance set
+	     entry_time=#{entryTime}, 
+	     exit_time=#{exitTime},
+	     study_time=#{studyTime},
+	     late_status=#{lateStatus}
+    where 
+       attendance_no=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from student_attendance 
+    where 
+      attendance_no=#{no}
+  </delete>
+</mapper>

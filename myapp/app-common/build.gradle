@@ -1,7 +1,7 @@
 plugins {
     //id 'application'
     id 'java-library'
-    id 'eclipse-wtp'
+    //id 'eclipse-wtp'
 }
 
 repositories {
@@ -41,6 +41,7 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+/*
 // eclipse 프로젝트 이름을 설정하기
 eclipse {
     project {
@@ -52,3 +53,4 @@ eclipse {
       javaRuntimeName = "JavaSE-17"
     }
 }
+*/
